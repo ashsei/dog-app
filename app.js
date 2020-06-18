@@ -16,7 +16,6 @@ if (userZip.length != 5) {
 } 
 let formatUserZip = userZip.toString();
 userAnimalSelect = prompt("Cat or Dog? Default is Dog if you don't make a selection or make an invalid selection.");
-console.log(userAnimalSelect);
 if (userAnimalSelect != "Cat" || "Dog") {
     userAnimalSelect = "Dog";
 }

@@ -1,0 +1,71 @@
+Random Code: 
+
+
+            // Append Breed and other information to informationContainer
+            let animalBreed = response.data.animals[i].breeds.primary;
+            let animalName = response.data.animals[i].name;
+            let animalPhoto = response.data.animals[i].primary_photo_cropped.small;
+            let adoptionInfo = response.data.animals[i].url;
+            let animalDescription = response.data.animals[i].description;
+
+            $('.imageContainer').append(animalBreed, animalName, animalPhoto, animalDescription, adoptionInfo);3
+            3
+
+
+            // Functions
+appendAnimalPhoto = () => {
+    let i = Math.floor(Math.random() * 20);
+    let animal = response.data.animals[i];
+    // Checks that Animal response has a photo, if not, chooses new animal from array at random //
+    if (animal.primary_photo_cropped === null){
+        i = Math.floor(Math.random() * 20);
+        // If the original randomly selected animal does have a photo, appends photo to HTML
+    } else {
+        const $petImg = $('<img>').attr('src', animal.primary_photo_cropped.full).attr('id', 'randomDog');
+        $('.imageContainer').append($petImg);
+    }
+} 
+
+
+
+
+
+// Information Needed for PetFinder API //
+var pf = new petfinder.Client({apiKey: "RrxzFfseW2JF3FXz9fbQvlZTdWoouqTj2s3fLbPveZEMMz1D1k", secret: "nL5HscHhnUuX1VjziUMcNRQrMWBAafXrvED23lpb"});
+
+
+
+// Parts of this code were spliced from PetFinder's API JS Documentation found at https://github.com/petfinder-com/petfinder-js-sdk //
+
+// Array of random Zip codes to use in Animal Search if there is no user input
+let randomZipCode = [
+    "30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757"
+]
+
+// Assigns Random Zip Code from above array to randomZip variable to use in animalSearch
+let randomZip = randomZipCode[Math.floor(Math.random() * randomZipCode.length)]
+
+console.log(randomZip);
+
+// Global Variable to house result of animalSearch function
+let animalResult = {};
+// Searches for an array of Animals //
+
+animalSearch = () => {
+    pf.animal.search({
+        type: "dog",
+        location: randomZip,
+    })
+    .then(function (response) {
+            animalResult = response.data
+            console.log(animalResult);
+            appendAnimalPhoto();
+            return animalResult;
+        })
+        .catch(function (error) {
+            console.log("The following error has been caught: " + error)
+        });   
+};
+
+animalSearch();
+
