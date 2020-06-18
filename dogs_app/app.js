@@ -14,12 +14,12 @@ userZip = prompt("Please enter your zip code. If you would prefer, a random zip 
 if (userZip.length != 5) {
     userZip = randomZip;
 } 
-formatUserZip = userZip.toString();
+let formatUserZip = userZip.toString();
 userAnimalSelect = prompt("Cat or Dog? Default is Dog if you don't make a selection or make an invalid selection.");
-if (userAnimalSelect != "Cat" || userAnimalSelect != "Dog") {
+if (userAnimalSelect != "Cat" || "Dog") {
     userAnimalSelect = "Dog";
 }
-formatAnimalSelect = userAnimalSelect.toString();
+let formatAnimalSelect = userAnimalSelect.toString();
 
 // Function to Append Animal Photo on Page Load //
 appendAnimalPhoto = (response) => {
@@ -74,12 +74,15 @@ gameFunction = (response) => {
         if(userAnswer.toUpperCase() == correctAnswer.toUpperCase() || userAnswer.toLowerCase() == correctAnswer2.toUpperCase()) {
             // !!! Add More Functionality Here (Hide/Show Certain Aspects of Website) !!! //
             alert('Correct!')
+            $('.imageContainer').hide();
+            $('.infoContainer').show();
         } else {
             alert('Sorry, try again!')
+            $('.imageContainer').hide();
+            $('.infoContainer').show();
         };
     })
 }
-
 
 animalSearch = () => {
     // Part of the code below was spliced from the Petfinder API JS Documentation found at https://github.com/petfinder-com/petfinder-js-sdk //
@@ -90,7 +93,9 @@ animalSearch = () => {
     .then(function (response) {
         console.log(response.data);
         appendAnimalPhoto(response);
+        $('.imageContainer').show();
         appendAnimalInfo(response);
+        $('.infoContainer').hide();
         gameFunction(response);
     })
     .catch(function (error) {
