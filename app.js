@@ -15,11 +15,12 @@ if (userZip.length != 5) {
     userZip = randomZip;
 } 
 let formatUserZip = userZip.toString();
+console.log(formatUserZip)
 userAnimalSelect = prompt("Cat or Dog? Default is Dog if you don't make a selection or make an invalid selection.");
-if (userAnimalSelect != "Cat" || "Dog") {
-    userAnimalSelect = "Dog";
-}
-let formatAnimalSelect = userAnimalSelect.toString();
+let formatAnimalSelect = `${userAnimalSelect}`;
+console.log(formatAnimalSelect)
+// !!! Set up conditional that checks user input for viable response !!! //
+
 
 // Function to Append Animal Photo on Page Load //
 appendAnimalPhoto = (response) => {
@@ -52,8 +53,7 @@ appendAnimalInfo = (response) => {
         const $breedAnimal = $('<div>').text(breed);
         $('.animalBreed').append($breedAnimal);
     };
-    // !!! THIS NEEDS TO BE AN ACTUAL LINK !!! //
-    const $adpoptionInfo = $('<div>').text("Follow this link to find out more information on this cutie! " + animal.url)
+    const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url}>Click here to find out more information about this cutie!</a>`)
     $('.animalAdoption').append($adpoptionInfo);
 }
 
@@ -91,7 +91,7 @@ animalSearch = () => {
         location: formatUserZip,
     })
     .then(function (response) {
-        console.log(response.data);
+        console.log(response);
         appendAnimalPhoto(response);
         $('.imageContainer').show();
         appendAnimalInfo(response);
