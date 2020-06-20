@@ -5,9 +5,13 @@ var pf = new petfinder.Client({apiKey: "RrxzFfseW2JF3FXz9fbQvlZTdWoouqTj2s3fLbPv
 let i;
 let animal;
 // !!! ADD MORE ZIP CODES !!! //
-let randomZipCodes = ["30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757"]
-let randomZip = randomZipCodes[Math.floor(Math.random() * randomZipCodes.length)]
+let randomZipCodes = ["30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757"];
+let randomZip = randomZipCodes[Math.floor(Math.random() * randomZipCodes.length)];
+
+
+
 // FUNCTIONS //
+
 
 // User Prompts on Page Load //
 userZip = prompt("Please enter your zip code. If you would prefer, a random zip code will be assigned if nothing is entered or if an invalid zip code is entered.")
@@ -23,7 +27,7 @@ console.log(formatAnimalSelect)
 
 
 // Function to Append Animal Photo on Page Load //
-appendAnimalPhoto = (response) => {
+const appendAnimalPhoto = (response) => {
     i = Math.floor(Math.random() * response.data.animals.length);
     animal = response.data.animals[i];
     // Checks that Animal response has a photo, if not, chooses new animal from array at random //
@@ -35,30 +39,32 @@ appendAnimalPhoto = (response) => {
         $('.imageContainer').append($animalImg);
     };
     return i, animal;
+    
 };
+
 
 // !!! THIS INFORMATION NEEDS TO BE HIDDEN UNTIL USER GUESSES BREED OR REQUESTS MORE INFORMATION  !!! //
 // Function to Append Animal Info on User Interaction //
-appendAnimalInfo = (response) => {
+const appendAnimalInfo = (response) => {
     const $smallAnimalPhoto = $('<img>').attr('src', animal.primary_photo_cropped.small).attr('id', 'infoPhoto');
-    $('.animalPhotoSmall').append($smallAnimalPhoto);
+    $('.infoContainer').append($smallAnimalPhoto);
     const $nameAnimal = $('<div>').text(animal.name);
-    $('.animalName').append($nameAnimal);
+    $('.infoContainer').append($nameAnimal);
     if (animal.breeds.secondary != null) {
-        let breed = (animal.breeds.primary + " " + animal.breeds.secondary)
+        let breed = (animal.breeds.primary + " " + animal.breeds.secondary);
         const $breedAnimal = $('<div>').text(breed);
-        $('.animalBreed').append($breedAnimal);
+        $('.infoContainer').append($breedAnimal);
     } else {
         let breed = (animal.breeds.primary)
         const $breedAnimal = $('<div>').text(breed);
-        $('.animalBreed').append($breedAnimal);
+        $('.infoContainer').append($breedAnimal);
     };
-    const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url}>Click here to find out more information about this cutie!</a>`)
-    $('.animalAdoption').append($adpoptionInfo);
+    const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url}>Click here to find out more information about this cutie!</a>`);
+    $('.infoContainer').append($adpoptionInfo);
 }
 
-// Event Listener for User Interaction //
-gameFunction = (response) => {
+// Event Listener for User Interaction with Game Functioniality //
+const gameFunction = (response) => {
     $('#submit').on('click', () => {
         let userAnswer = $('#guess').val();
         let correctAnswer = response.data.animals[i].breeds.primary;
@@ -70,27 +76,43 @@ gameFunction = (response) => {
         // console.log(correctAnswer); - Debugging
         console.log(correctAnswer2);
         // console.log(userAnswer); - Debugging
-
-        if(userAnswer.toUpperCase() == correctAnswer.toUpperCase() || userAnswer.toLowerCase() == correctAnswer2.toUpperCase()) {
+        // Conditional to Check User Answer Against Correct Answer
+        if(userAnswer.toUpperCase() === correctAnswer.toUpperCase() || userAnswer.toLowerCase() === correctAnswer2.toUpperCase()) {
             // !!! Add More Functionality Here (Hide/Show Certain Aspects of Website) !!! //
             alert('Correct!')
             $('.imageContainer').hide();
+            $('.userInteraction').hide();
             $('.infoContainer').show();
+            $('#playAgain').show();
         } else {
             alert('Sorry, try again!')
             $('.imageContainer').hide();
+            $('.userInteraction').hide();
             $('.infoContainer').show();
+            $('#playAgain').show();
         };
-    })
-}
+    });
+};
 
-animalSearch = () => {
+// Event Listener for Reveal Information Button //
+const revealInfo = () => {
+    $('#revealAnswer').on('click',() => {
+        $('.imageContainer').hide();
+        $('.userInteraction').toggle();
+        $('.infoContainer').show();
+        $('#playAgain').show();
+    });
+};
+
+// Petfinder API Call //
+const animalSearch = () => {
     // Part of the code below was spliced from the Petfinder API JS Documentation found at https://github.com/petfinder-com/petfinder-js-sdk //
     pf.animal.search({
         type: formatAnimalSelect,
         location: formatUserZip,
     })
     .then(function (response) {
+        $('.userInteraction').show()
         console.log(response);
         appendAnimalPhoto(response);
         $('.imageContainer').show();
@@ -101,12 +123,40 @@ animalSearch = () => {
     .catch(function (error) {
         console.log(error)
         });   
-}
+};
+
+// Event Listener for Reset Functionality //
+const reset = () => {
+    $('#reset').on('click', () => {
+        // !!! ADD FUNCTIONALITY TO RESET SCORE COUNTER ONCE COUNTER IS ADDED !!! //
+        // !!! ADD FUNCTIONALITY TO HAVING LOADING GIF PLAY WHILE RELOADING ANIMAL SEARCH !!! //
+        $('.imageContainer').empty();
+        $('.infoContainer').empty();
+        animalSearch();
+
+    });
+};
+
+// Event Listener for Play Again //
+const playAgain = () => {
+    $('#playAgain').on('click',() => {
+        $('.infoContainer').hide();
+        $('.imageContainer').show();
+        $('.imageContainer').empty();
+        $('.infoContainer').empty();
+        animalSearch();
+        $('#playAgain').hide();    
+    });
+};
 
 
 // CALLBACKS //
 
 $(()=> {
+    $('#playAgain').hide();
     animalSearch();
-})
+    reset();
+    revealInfo();
+    playAgain();
+});
 
