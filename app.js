@@ -7,7 +7,7 @@ let animal;
 // !!! ADD MORE ZIP CODES !!! //
 let randomZipCodes = ["30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757"];
 let randomZip = randomZipCodes[Math.floor(Math.random() * randomZipCodes.length)];
-
+let score = 0;
 
 
 // FUNCTIONS //
@@ -80,12 +80,16 @@ const gameFunction = (response) => {
         if(userAnswer.toUpperCase() === correctAnswer.toUpperCase() || userAnswer.toLowerCase() === correctAnswer2.toUpperCase()) {
             // !!! Add More Functionality Here (Hide/Show Certain Aspects of Website) !!! //
             alert('Correct!')
+            score += 2;
+            $('.scoreCounter').text("Your Score: " + score);
             $('.imageContainer').hide();
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
         } else {
             alert('Sorry, try again!')
+            score -= 1;
+            $('.scoreCounter').text("Your Score: " + score);
             $('.imageContainer').hide();
             $('.userInteraction').hide();
             $('.infoContainer').show();
@@ -101,6 +105,8 @@ const revealInfo = () => {
         $('.userInteraction').toggle();
         $('.infoContainer').show();
         $('#playAgain').show();
+        score -= 1;
+        $('.scoreCounter').text("Your Score: " + score);
     });
 };
 
@@ -119,6 +125,7 @@ const animalSearch = () => {
         appendAnimalInfo(response);
         $('.infoContainer').hide();
         gameFunction(response);
+        $('.scoreCounter').text("Your Score: " + score);
     })
     .catch(function (error) {
         console.log(error)
@@ -128,12 +135,11 @@ const animalSearch = () => {
 // Event Listener for Reset Functionality //
 const reset = () => {
     $('#reset').on('click', () => {
-        // !!! ADD FUNCTIONALITY TO RESET SCORE COUNTER ONCE COUNTER IS ADDED !!! //
+        score = 0;
         // !!! ADD FUNCTIONALITY TO HAVING LOADING GIF PLAY WHILE RELOADING ANIMAL SEARCH !!! //
         $('.imageContainer').empty();
         $('.infoContainer').empty();
         animalSearch();
-
     });
 };
 
