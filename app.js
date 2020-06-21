@@ -7,7 +7,11 @@ let animal;
 // !!! ADD MORE ZIP CODES !!! //
 let randomZipCodes = ["30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757"];
 let randomZip = randomZipCodes[Math.floor(Math.random() * randomZipCodes.length)];
+let randomTypes = ["Cat", "Dog"];
+let randomType = randomTypes[Math.floor(Math.random() * randomTypes.length)];
 let score = 0;
+let userZip;
+let userType;
 
 
 // FUNCTIONS //
@@ -16,20 +20,56 @@ let score = 0;
 const loadSearch = () => {
     // !!! ADD FUNCTIONALITY TO VALIDATE USER INPUT AS VALID SEARCH, IF NOT USE DEFAULT OF RANDOM ZIP AND DOG/CAT
     $('#search').on('click', () => {
-        let userZip = $('#zip').val();
-        let userType = $('#type').val();
+        $('.userInput').hide()
+        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        userZip = $('#zip').val();
+        userType = $('#type').val();
         animalSearch(userZip, userType);
-        $('.userInput').hide();
+        console.log(userZip, userType);
+        return userZip, userType;
     });
+    $('#random').on('click', () => {
+        $('.userInput').hide()
+        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        userZip = randomZip;
+        userType = randomType;
+        animalSearch(userZip, userType);
+        console.log(userZip, userType);
+        return userZip, userType;
+    })
+};
+
+// Petfinder API Call //
+const animalSearch = (Zip, Type) => {
+    // Part of the code below was spliced from the Petfinder API JS Documentation found at https://github.com/petfinder-com/petfinder-js-sdk //
+    pf.animal.search({
+        type: Type,
+        location: Zip,
+    })
+    .then(function (response) {
+        $('.waiting').hide()
+        $('.userInteraction').show();
+        console.log(response);
+        appendAnimalPhoto(response);
+        $('.imageContainer').show();
+        appendAnimalInfo(response);
+        $('.infoContainer').hide();
+        gameFunction(response);
+        $('.scoreCounter').text("Your Score: " + score);
+    })
+    .catch(function (error) {
+        console.log(error)
+        });   
 };
 
 // Function to Append Animal Photo on Page Load //
 const appendAnimalPhoto = (response) => {
     i = Math.floor(Math.random() * response.data.animals.length);
+    console.log(i);
     animal = response.data.animals[i];
     // Checks that Animal response has a photo, if not, chooses new animal from array at random //
     if (animal.primary_photo_cropped === null){
-        animalSearch();
+        animalSearch(userZip, userType);
     // If the original randomly selected animal does have a photo, appends photo to HTML
     } else {
         const $animalImg = $('<img>').attr('src', animal.primary_photo_cropped.full).attr('id', 'randomAnimal');
@@ -39,8 +79,6 @@ const appendAnimalPhoto = (response) => {
     
 };
 
-
-// !!! THIS INFORMATION NEEDS TO BE HIDDEN UNTIL USER GUESSES BREED OR REQUESTS MORE INFORMATION  !!! //
 // Function to Append Animal Info on User Interaction //
 const appendAnimalInfo = (response) => {
     const $smallAnimalPhoto = $('<img>').attr('src', animal.primary_photo_cropped.small).attr('id', 'infoPhoto');
@@ -68,23 +106,30 @@ const gameFunction = (response) => {
         let correctAnswer2 = "";
         if (response.data.animals[i].breeds.secondary != null) {
             correctAnswer2 = response.data.animals[i].breeds.secondary
-            return correctAnswer2;
-        }
+        };
         // console.log(correctAnswer); - Debugging
-        console.log(correctAnswer2);
+        // console.log(correctAnswer2); - Debugging
         // console.log(userAnswer); - Debugging
         // Conditional to Check User Answer Against Correct Answer
-        if(userAnswer.toUpperCase() === correctAnswer.toUpperCase() || userAnswer.toLowerCase() === correctAnswer2.toUpperCase()) {
+        if(userAnswer.toUpperCase() == correctAnswer.toUpperCase() && userAnswer.toUpperCase() == correctAnswer2.toUpperCase()) {
             // !!! Add More Functionality Here (Hide/Show Certain Aspects of Website) !!! //
-            alert('Correct!')
+            alert('Correct! You get two points!')
             score += 2;
             $('.scoreCounter').text("Your Score: " + score);
             $('.imageContainer').hide();
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
+        } else if (userAnswer.toUpperCase() == correctAnswer.toUpperCase() || userAnswer.toUpperCase() == correctAnswer2.toUpperCase()) {
+            alert('Kinda Right! You get one point!')
+            score += 1;
+            $('.scoreCounter').text("Your Score: " + score);
+            $('.imageContainer').hide();
+            $('.userInteraction').hide();
+            $('.infoContainer').show();
+            $('#playAgain').show();
         } else {
-            alert('Sorry, try again!')
+            alert('Incorrect! Try again!');
             score -= 1;
             $('.scoreCounter').text("Your Score: " + score);
             $('.imageContainer').hide();
@@ -107,27 +152,7 @@ const revealInfo = () => {
     });
 };
 
-// Petfinder API Call //
-const animalSearch = (userZip, userType) => {
-    // Part of the code below was spliced from the Petfinder API JS Documentation found at https://github.com/petfinder-com/petfinder-js-sdk //
-    pf.animal.search({
-        type: userType,
-        location: userZip,
-    })
-    .then(function (response) {
-        $('.userInteraction').show()
-        console.log(response);
-        appendAnimalPhoto(response);
-        $('.imageContainer').show();
-        appendAnimalInfo(response);
-        $('.infoContainer').hide();
-        gameFunction(response);
-        $('.scoreCounter').text("Your Score: " + score);
-    })
-    .catch(function (error) {
-        console.log(error)
-        });   
-};
+
 
 // Event Listener for Reset Functionality //
 const reset = () => {
@@ -136,7 +161,9 @@ const reset = () => {
         // !!! ADD FUNCTIONALITY TO HAVING LOADING GIF PLAY WHILE RELOADING ANIMAL SEARCH !!! //
         $('.imageContainer').empty();
         $('.infoContainer').empty();
-        animalSearch();
+        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        animalSearch(userZip, userType);
+        console.log(userZip, userType);
     });
 };
 
@@ -147,7 +174,9 @@ const playAgain = () => {
         $('.imageContainer').show();
         $('.imageContainer').empty();
         $('.infoContainer').empty();
-        animalSearch();
+        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        animalSearch(userZip, userType);
+        console.log(userZip, userType);
         $('#playAgain').hide();    
     });
 };
