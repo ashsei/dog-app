@@ -16,12 +16,18 @@
     <h2>Introductory Content</h2>
     <nav>
         <a href = "index.html">Home</a>
-        <a href = "https://www.petfinder.com">Find a Pet</a>
-        <a href = "breeds.html">Breed Information</a>
-        <a href = "rescuing.html">Rescuing Information</a>
-        <a href = "about.html">About</a>
-        
+        <a href = "https://www.petfinder.com" target = "_blank">Find a Pet</a>
+        <a href = "breeds.html" target = "_blank">Breed Information</a>
+        <a href = "rescuing.html" target = "_blank">Rescuing Information</a>
+        <a href = "about.html" target = "_blank">About</a>
     </nav>
+    <div class = "userInput"></div>
+        <label for = "zip">What's your zip code?</label>
+        <input type="text" id="zip" name="zip">
+        <label for = "type">Would you like a cat or a dog?</label>
+        <input type="text" id="type" name="type">
+        <input type="submit" id="search" value="Search">
+
     <div class = "scoreCounter"></div>
     <div class = "imageContainer"></div>
     <div class = "infoContainer"></div><br>

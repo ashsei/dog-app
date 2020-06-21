@@ -12,19 +12,16 @@ let score = 0;
 
 // FUNCTIONS //
 
-
-// User Prompts on Page Load //
-userZip = prompt("Please enter your zip code. If you would prefer, a random zip code will be assigned if nothing is entered or if an invalid zip code is entered.")
-if (userZip.length != 5) {
-    userZip = randomZip;
-} 
-let formatUserZip = userZip.toString();
-console.log(formatUserZip)
-userAnimalSelect = prompt("Cat or Dog? Default is Dog if you don't make a selection or make an invalid selection.");
-let formatAnimalSelect = `${userAnimalSelect}`;
-console.log(formatAnimalSelect)
-// !!! Set up conditional that checks user input for viable response !!! //
-
+// Event Listener for Search Input //
+const loadSearch = () => {
+    // !!! ADD FUNCTIONALITY TO VALIDATE USER INPUT AS VALID SEARCH, IF NOT USE DEFAULT OF RANDOM ZIP AND DOG/CAT
+    $('#search').on('click', () => {
+        let userZip = $('#zip').val();
+        let userType = $('#type').val();
+        animalSearch(userZip, userType);
+        $('.userInput').hide();
+    });
+};
 
 // Function to Append Animal Photo on Page Load //
 const appendAnimalPhoto = (response) => {
@@ -59,7 +56,7 @@ const appendAnimalInfo = (response) => {
         const $breedAnimal = $('<div>').text(breed);
         $('.infoContainer').append($breedAnimal);
     };
-    const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url}>Click here to find out more information about this cutie!</a>`);
+    const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url} target = "_blank">Click here to find out more information about this cutie!</a>`);
     $('.infoContainer').append($adpoptionInfo);
 }
 
@@ -111,11 +108,11 @@ const revealInfo = () => {
 };
 
 // Petfinder API Call //
-const animalSearch = () => {
+const animalSearch = (userZip, userType) => {
     // Part of the code below was spliced from the Petfinder API JS Documentation found at https://github.com/petfinder-com/petfinder-js-sdk //
     pf.animal.search({
-        type: formatAnimalSelect,
-        location: formatUserZip,
+        type: userType,
+        location: userZip,
     })
     .then(function (response) {
         $('.userInteraction').show()
@@ -156,13 +153,14 @@ const playAgain = () => {
 };
 
 
+
 // CALLBACKS //
 
 $(()=> {
     $('#playAgain').hide();
-    animalSearch();
+    $('.userInteraction').hide();
+    loadSearch();
     reset();
     revealInfo();
     playAgain();
 });
-
