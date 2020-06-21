@@ -1,12 +1,80 @@
 body {
-    margin: auto;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-image: url(mainbackground.jpg);
+    margin-top: 50px;
 }
 
-#randomDog {
-    width: 500px;
-    height: 500px;
-    margin-right: auto;
-    margin-left: auto;
-    display: inline-block;
+h1 {
+    font-family: 'Rock Salt', cursive;
+    margin-top: 60px;
+    font-size: 45px;
+
+}
+
+h2 {
+
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background-color: #76eb6a;
+    opacity: .75;
+    text-align: right;
+}
+
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75px;
+    height: 75px;
+}
+
+nav a {
+    margin: 0 2vw;
+    position: relative;
+    top: 25px;
+    padding: 0.5em;
+    text-decoration: none;
+    color: black;
+    font-family: 'Fredericka the Great', cursive;
+}
+
+nav a:hover {
+    background-color: #5ee34f;
+}
+
+.userInput {
+
+}
+
+.waiting {
+
+}
+
+.scoreCounter {
+
+}
+
+.imageContainer {
+
+}
+
+.infoContainer {
+
+}
+
+.userInteraction {
+
+}
+
+.playAgain {
+
 }
