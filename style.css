@@ -1,3 +1,4 @@
+/* General Styling */
 body {
     display: flex;
     flex-direction: column;
@@ -9,21 +10,24 @@ body {
 
 h1 {
     font-family: 'Rock Salt', cursive;
-    margin-top: 60px;
-    font-size: 45px;
+    font-size: 75px;
+    color: #0e4c52;
 
 }
 
 h2 {
-
+    font-family: 'Amatic SC', cursive;
+    font-size: 25px;
 }
 
+/* Navigation Bar Styling */
 nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 75px;
+    width: 100%;
     background-color: #76eb6a;
     opacity: .75;
     text-align: right;
@@ -37,6 +41,12 @@ nav {
     height: 75px;
 }
 
+.title {
+    position: absolute;
+    left: 80px;
+    top: 9px;
+    font-family: 'Fredericka the Great', cursive;
+} 
 nav a {
     margin: 0 2vw;
     position: relative;
@@ -51,8 +61,12 @@ nav a:hover {
     background-color: #5ee34f;
 }
 
+/* User Input and Buttons Styling */
 .userInput {
-
+    font-family: 'Fredericka the Great', cursive;
+}
+#search, #random, #reset, #revealAnswer, #submit{
+    font-family: inherit;
 }
 
 .waiting {
@@ -60,19 +74,53 @@ nav a:hover {
 }
 
 .scoreCounter {
-
+    position: absolute;
+    align-self: center;
+    top: 15%;
+    padding: 10px;
+    border: 5px solid #19818a;
+    border-radius: 25px;
+    font-family: 'Amatic SC', cursive;
 }
 
 .imageContainer {
+    height: 750px;
+    width: 750px;
+    border: 5px solid #19818a;
+    border-radius: 25px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
 
 }
 
 .infoContainer {
-
+    height: 600px;
+    width: 750px;
+    border: 5px solid #19818a;
+    border-radius: 25px;
+    align-self: center;
+    margin-top: 10%;
 }
 
-.userInteraction {
+#randomAnimal {
+    opacity: 1;
+    height: 750px;
+    width: 750px;
+    border-radius: 24px;
+}
 
+#detailPhoto {
+    height: 500px;
+    width: 500px;
+}
+
+
+.userInteraction {
+    font-family: 'Fredericka the Great', cursive;
 }
 
 .playAgain {

@@ -47,7 +47,9 @@ const animalSearch = (Zip, Type) => {
         location: Zip,
     })
     .then(function (response) {
-        $('.waiting').hide()
+        $('.header').hide();
+        $('.waiting').hide();
+        $('.scoreCounter').show();
         $('.userInteraction').show();
         console.log(response);
         appendAnimalPhoto(response);
@@ -59,7 +61,7 @@ const animalSearch = (Zip, Type) => {
     })
     .catch(function (error) {
         console.log(error)
-        });   
+    });   
 };
 
 // Function to Append Animal Photo on Page Load //
@@ -81,8 +83,13 @@ const appendAnimalPhoto = (response) => {
 
 // Function to Append Animal Info on User Interaction //
 const appendAnimalInfo = (response) => {
-    const $smallAnimalPhoto = $('<img>').attr('src', animal.primary_photo_cropped.small).attr('id', 'infoPhoto');
-    $('.infoContainer').append($smallAnimalPhoto);
+    let $photoAnimal;
+    if (animal.photos.hasOwnProperty('1')) {
+        $photoAnimal = $('<img>').attr('src', animal.photos[1].full).attr('id', 'detailPhoto');
+    } else {
+        $photoAnimal = $('<img>').attr('src', animal.photos[0].full).attr('id', 'detailPhoto');
+    };
+    $('.infoContainer').append($photoAnimal)    
     const $nameAnimal = $('<div>').text(animal.name);
     $('.infoContainer').append($nameAnimal);
     if (animal.breeds.secondary != null) {
@@ -188,6 +195,9 @@ const playAgain = () => {
 $(()=> {
     $('#playAgain').hide();
     $('.userInteraction').hide();
+    $('.imageContainer').hide();
+    $('.infoContainer').hide();
+    $('.scoreCounter').hide();
     loadSearch();
     reset();
     revealInfo();

@@ -11,13 +11,17 @@
     <!-- Favicon Provided by https://www.favicongenerator.com/-->
     <link rel="shortcut icon" type="image/x-icon" href="1592628356.ico">
     <!-- Google Fonts Embeded -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Fredericka+the+Great&family=Rock+Salt&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Guess-To-Pet</h1>
-    <h2>Bringing animals from being guesses on your screen, to being lovable pets in your home since 2020!</h2>
+    <div class ="header">
+        <h1>Guess-To-Pet</h1>
+        <h2>Bringing animals from being guesses on your screen, to being lovable pets in your home since 2020!</h2> 
+    </div>
     <nav>
         <image src="logo.png" id= "logo"></image>
+        <p class="title">Guess-To-Pet</p>
         <a href = "index.html">Home</a>
         <a href = "https://www.petfinder.com" target = "_blank">Find a Pet</a>
         <a href = "https://www.petfinder.com/dog-breeds/" target = "_blank">Dog Breeds</a>
@@ -29,19 +33,20 @@
         <label for = "zip">What's your zip code?</label>
         <input type="text" id="zip" name="zip">
         <label for = "type">Would you like a cat or a dog?</label>
-        <input type="text" id="type" name="type">
-        <input type="submit" id="search" value="Search"><br>
+        <input type="text" id="type" name="type"><br><br>
+        <input type="submit" id="search" value="Search">
         <input type="button" id="random" value="Random">
     </div>
     <div class = "waiting"></div>
     <div class = "scoreCounter"></div>
     <div class = "imageContainer"></div>
-    <div class = "infoContainer"></div><br>
+    <div class = "infoContainer">
+    </div><br>
     <div class = "userInteraction">
-        <label for="bguess">What breed do you think this cutie is?</label>
+        <label for="bguess">What breed do you think this cutie is?</label><br><br>
         <input type="text" id="guess" name="bguess">
-        <input type="submit" id="submit" value="Submit">
-        <input type="button" id="revealAnswer" value="Reveal Answer"><br>
+        <input type="submit" id="submit" value="Submit"><br><br>
+        <input type="button" id="revealAnswer" value="Reveal Answer">
         <input type="button" id="reset" value="Reset Score / Page"><br>
     </div>
     <div class = "playAgain">
