@@ -18,10 +18,13 @@ let userType;
 
 // Event Listener for Search Input //
 const loadSearch = () => {
-    // !!! ADD FUNCTIONALITY TO VALIDATE USER INPUT AS VALID SEARCH, IF NOT USE DEFAULT OF RANDOM ZIP AND DOG/CAT
     $('#search').on('click', () => {
         $('.userInput').hide()
-        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
+        if (userType == 'Cat'){
+            $('.catloader').show().html('<img id = "loader" src = "Images/catloader.gif"/>');
+        } else {
+            $('.dogloader').show().html('<img id = "loader" src = "Images/dogloader.gif">');
+        };
         userZip = $('#zip').val();
         userType = $('#type :selected').val();
         animalSearch(userZip, userType);
@@ -29,10 +32,14 @@ const loadSearch = () => {
         return userZip, userType;
     });
     $('#random').on('click', () => {
-        $('.userInput').hide()
-        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
+        $('.userInput').hide();
         userZip = randomZip;
         userType = randomType;
+        if (userType == 'Cat'){
+            $('.catloader').show().html('<img id = "loader" src = "Images/catloader.gif"/>');
+        } else {
+            $('.dogloader').show().html('<img id = "loader" src = "Images/dogloader.gif">');
+        };
         animalSearch(userZip, userType);
         console.log(userZip, userType);
         return userZip, userType;
@@ -48,7 +55,9 @@ const animalSearch = (Zip, Type) => {
     })
     .then(function (response) {
         $('.header').hide();
-        $('.waiting').hide();
+        $('.catloader').hide();
+        $('.dogloader').hide();
+        $('#mainlogo').hide();
         $('.scoreCounter').show();
         $('.userInteraction').show();
         console.log(response);
@@ -164,13 +173,7 @@ const revealInfo = () => {
 // Event Listener for Reset Functionality //
 const reset = () => {
     $('#reset').on('click', () => {
-        score = 0;
-        // !!! ADD FUNCTIONALITY TO HAVING LOADING GIF PLAY WHILE RELOADING ANIMAL SEARCH !!! //
-        $('.imageContainer').empty();
-        $('.infoContainer').empty();
-        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
-        animalSearch(userZip, userType);
-        console.log(userZip, userType);
+        location = location
     });
 };
 
@@ -181,7 +184,11 @@ const playAgain = () => {
         $('.imageContainer').show();
         $('.imageContainer').empty();
         $('.infoContainer').empty();
-        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
+        if (userType == 'Cat'){
+            $('.catloader').show().html('<img id = "loader" src = "Images/catloader.gif"/>');
+        } else {
+            $('.dogloader').show().html('<img id = "loader" src = "Images/dogloader.gif">');
+        };
         animalSearch(userZip, userType);
         console.log(userZip, userType);
         $('#playAgain').hide();    

@@ -7,6 +7,8 @@ body {
     align-items: center;
     text-align: center;
     background-image: url(Images/mainbackground.jpg);
+    background-size: cover;
+    background-origin: content-box;
     margin-top: 50px;
 }
 
@@ -19,9 +21,11 @@ h1 {
 
 h2 {
     font-family: 'Amatic SC', cursive;
-    font-size: 25px;
+    font-size: 35px;
     align-self: center;
-    color: #76eb6a;
+    color: #11f294;
+    font-weight: bold;
+    margin-top: -30px;
 }
 
 /* Navigation Bar Styling */
@@ -32,7 +36,8 @@ nav {
     right: 0;
     height: 75px;
     width: 100%;
-    background-color: #76eb6a;
+    background: linear-gradient(0deg, rgba(35,183,195,0.8029586834733894) 0%, rgba(118,235,106,1) 88%);
+
     opacity: .75;
     text-align: right;
 }
@@ -46,10 +51,10 @@ nav {
 }
 
 .title {
-    position: absolute;
-    left: 80px;
-    top: 9px;
-    font-family: 'Fredericka the Great', cursive;
+    position: fixed;
+    left: 77px;
+    top: 2px;
+    font-family: 'Rock Salt', cursive;
 } 
 nav a {
     margin: 0 2vw;
@@ -59,6 +64,7 @@ nav a {
     text-decoration: none;
     color: black;
     font-family: 'Fredericka the Great', cursive;
+    border-radius: 20px;
 }
 
 nav a:hover {
@@ -67,8 +73,8 @@ nav a:hover {
 /* Header Styling */
 
 .header {
+    margin-top: -100px;
     position: relative;
-    margin-top: 400px;
     min-width: 300px;
 }
 /* User Input and Buttons Styling */
@@ -76,15 +82,22 @@ nav a:hover {
     font-family: 'Fredericka the Great', cursive;
     color: #0e4c52;
 }
+
 #search, #random, #reset, #revealAnswer, #submit, #type, #zip{
     font-family: inherit;
+    font-size: 18px;
     text-align: center;
     color: inherit;
 }
 
-#zip, #type {
-    background-color: #76eb6a;
-    border-radius: 25px;
+#zip, #type, #search, #random {
+    background-color: #11f294;
+    border: none;
+    border-radius: 20px;
+}
+
+#search, #random {
+    font-size: 30px;
 }
 
 .waiting {
