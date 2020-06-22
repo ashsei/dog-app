@@ -23,7 +23,7 @@ const loadSearch = () => {
         $('.userInput').hide()
         $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
         userZip = $('#zip').val();
-        userType = $('#type').val();
+        userType = $('#type :selected').val();
         animalSearch(userZip, userType);
         console.log(userZip, userType);
         return userZip, userType;

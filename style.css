@@ -2,7 +2,9 @@
 body {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     text-align: center;
     background-image: url(Images/mainbackground.jpg);
     margin-top: 50px;
@@ -18,6 +20,8 @@ h1 {
 h2 {
     font-family: 'Amatic SC', cursive;
     font-size: 25px;
+    align-self: center;
+    color: #76eb6a;
 }
 
 /* Navigation Bar Styling */
@@ -60,13 +64,27 @@ nav a {
 nav a:hover {
     background-color: #5ee34f;
 }
+/* Header Styling */
 
+.header {
+    position: relative;
+    margin-top: 400px;
+    min-width: 300px;
+}
 /* User Input and Buttons Styling */
 .userInput {
     font-family: 'Fredericka the Great', cursive;
+    color: #0e4c52;
 }
-#search, #random, #reset, #revealAnswer, #submit{
+#search, #random, #reset, #revealAnswer, #submit, #type, #zip{
     font-family: inherit;
+    text-align: center;
+    color: inherit;
+}
+
+#zip, #type {
+    background-color: #76eb6a;
+    border-radius: 25px;
 }
 
 .waiting {
