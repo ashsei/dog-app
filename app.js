@@ -21,7 +21,7 @@ const loadSearch = () => {
     // !!! ADD FUNCTIONALITY TO VALIDATE USER INPUT AS VALID SEARCH, IF NOT USE DEFAULT OF RANDOM ZIP AND DOG/CAT
     $('#search').on('click', () => {
         $('.userInput').hide()
-        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
         userZip = $('#zip').val();
         userType = $('#type').val();
         animalSearch(userZip, userType);
@@ -30,7 +30,7 @@ const loadSearch = () => {
     });
     $('#random').on('click', () => {
         $('.userInput').hide()
-        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
         userZip = randomZip;
         userType = randomType;
         animalSearch(userZip, userType);
@@ -168,7 +168,7 @@ const reset = () => {
         // !!! ADD FUNCTIONALITY TO HAVING LOADING GIF PLAY WHILE RELOADING ANIMAL SEARCH !!! //
         $('.imageContainer').empty();
         $('.infoContainer').empty();
-        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
         animalSearch(userZip, userType);
         console.log(userZip, userType);
     });
@@ -181,7 +181,7 @@ const playAgain = () => {
         $('.imageContainer').show();
         $('.imageContainer').empty();
         $('.infoContainer').empty();
-        $('.waiting').show().html('<img id = "loader" src = "loader.gif"/>');
+        $('.waiting').show().html('<img id = "loader" src = "Images/loader.gif"/>');
         animalSearch(userZip, userType);
         console.log(userZip, userType);
         $('#playAgain').hide();    
