@@ -70,27 +70,25 @@ nav a {
 nav a:hover {
     background-color: #5ee34f;
 }
-/* Header Styling */
 
+/* Header Styling */
 .header {
     margin-top: -100px;
     position: relative;
     min-width: 300px;
 }
+
 /* User Input and Buttons Styling */
 .userInput {
     font-family: 'Fredericka the Great', cursive;
     color: #0e4c52;
 }
 
-#search, #random, #reset, #revealAnswer, #submit, #type, #zip{
+#search, #random, #reset, #revealAnswer, #submit, #type, #zip, #guess{
     font-family: inherit;
     font-size: 18px;
     text-align: center;
     color: inherit;
-}
-
-#zip, #type, #search, #random {
     background-color: #11f294;
     border: none;
     border-radius: 20px;
@@ -100,21 +98,26 @@ nav a:hover {
     font-size: 30px;
 }
 
+/* Loading Image Styling */
 .waiting {
-
+    position: relative;
 }
 
+/* Score Counter Styling */
 .scoreCounter {
-    position: absolute;
+    position: relative;
+    top: 100px;
     align-self: center;
-    top: 15%;
     padding: 10px;
     border: 5px solid #19818a;
     border-radius: 25px;
     font-family: 'Amatic SC', cursive;
+    background-color: #11f294;
 }
 
-.imageContainer {
+/* Containers for Image, then Info Styling */
+.imageContainer , .infoContainer {
+    position: relative;
     height: 750px;
     width: 750px;
     border: 5px solid #19818a;
@@ -124,19 +127,10 @@ nav a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 150px;
-
+    top: 150px;
 }
 
-.infoContainer {
-    height: 600px;
-    width: 750px;
-    border: 5px solid #19818a;
-    border-radius: 25px;
-    align-self: center;
-    margin-top: 10%;
-}
-
+/* Styling for image in imageContainer */
 #randomAnimal {
     opacity: 1;
     height: 750px;
@@ -144,16 +138,21 @@ nav a:hover {
     border-radius: 24px;
 }
 
+/* Styling for image in infoContainer */
 #detailPhoto {
     height: 500px;
     width: 500px;
 }
 
-
+/* Styling for Game Function Controllers */
 .userInteraction {
     font-family: 'Fredericka the Great', cursive;
+    position: relative;
+    margin-top: 200px;
 }
 
+/* Styling for playAgain button */
 .playAgain {
-
+    position: relative;
+    margin-top: 150px;
 }

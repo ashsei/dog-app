@@ -12,6 +12,11 @@ let randomType = randomTypes[Math.floor(Math.random() * randomTypes.length)];
 let score = 0;
 let userZip;
 let userType;
+// Information for the dogBreeds array was spliced from https://www.britannica.com/topic/list-of-dog-breeds-2027892 //
+let dogBreeds = ['Affenpinscher', 'Afghan Hound', 'Airedale Terrier' , 'Akita', 'Alaskan Malamute', 'American Staffordshire Terrier', 'American Water Spaniel', 'Australian Cattle Dog', 'Australian Shepherd', 'Australian Terrier', 'Basenji', 'Basset Hound', 'Beagle', 'Bearded Collie', 'Bedlington Terrier', 'Bernese Mountain Dog', 'Bichon Frise', 'Black and Tan Coonhound', 'Bloodhound', 'Border Collie', 'Border Terrier', 'Borzoi', 'Boston Terrier', 'Bouvier des Flandres', 'Boxer', 'Briard', 'Brittany', 'Brussels Griffon', 'Bull Terrier', 'Bulldog', 'Bullmastiff', 'Cairn Terrier', 'Canaan Dog', 'Chesapeake Bay Retriever', 'Chihuahua', 'Chinese Crested', 'Chinese Shar-Pei', 'Chow Chow', 'Clumber Spaniel', 'Cocker Spaniel', 'Collie', 'Curly-Coated Retriever', 'Dachshund', 'Dalmation', 'Doberman Pinscher', 'English Cocker Spaniel', 'English Setter', 'English Springer Spaniel', 'English Toy Spaniel', 'Eskimo Dog', 'Finnish Spitz', 'Flat-Coated Retriever', 'Fox Terrier', 'Foxhound', 'French Bulldog', 'German Shepherd', 'German Shorthaired Pointer', 'German Wirehaired Pointer', 'Golden Retriever', 'Gordon Setter', 'Great Dane', 'Greyhound', 'Irish Setter', 'Irish Water Spaniel', 'Irish Wolfhound', 'Jack Russell Terrier', 'Japanese Spaniel', 'Keeshond', 'Kerry Blue Terrier', 'Komondor', 'Kuvasz', 'Labrador Retriever', 'Lakeland Terrier', 'Lhasa Apso', 'Maltese', 'Manchester Terrier', 'Mastiff', 'Mexican Hairless', 'Newfoundland', 'Norwegian Elkhound', 'Norwich Terrier', 'Otterhound', 'Papillon', 'Pekingese', 'Pointer', 'Pomeranian', 'Poodle', 'Pug', 'Puli', 'Rhodesian Ridgeback', 'Rottweiler', 'Saint Bernard', 'Saluki', 'Samoyed', 'Schipperke', 'Schnauzer', 'Scottish Deerhound', 'Scottish Terrier', 'Sealyham Terrier', 'Shetland Sheepdog', 'Shih Tzu', 'Siberian Husky', 'Silky Terrier', 'Skye Terrier', 'Staffordshire Bull Terrier', 'Soft-Coated Wheaten Terrier', 'Sussex Spaniel', 'Spitz', 'Tibetan Terrier', 'Vizsla', 'Weimaraner', 'Welsh Terrier', 'West Highland White Terrier', 'Whippet', 'Yorkshire Terrier'];
+// Information for the catBreeds array was spliced from https://www.petfinder.com/cat-breeds/?page=1 //
+let catBreeds = ['Abyssinian', 'American Bobtail', 'American Curl', 'American Shorthair', 'American Wirehair', 'Balinese', 'Bengal', 'Birman', 'Bombay', 'British Shorthair', 'Burmese', 'Burmilla', 'Chartreux', 'Chausie', 'Cornish Rex', 'Cymric', 'Devon Rex', 'Egyptian Mau', 'Exotic Shorthair', 'Havana', 'Himalayan', 'Japanese Bobtail', 'Javanese', 'Korat', 'LaPerm', 'Maine Coon', 'Manx', 'Munchkin', 'Nebelung', 'Norwegian Forest Cat', 'Ocicat', 'Oriental Short Hair', 'Persian', 'Pixiebob', 'Ragamuffin', 'Ragdoll', 'Russian Blue', 'Scottish Fold', 'Selkirk Rex', 'Siamese', 'Siberian', 'Singapura', 'Snowshoe', 'Somali', 'Sphynx/Hairless Cat', 'Tonkinese', 'Toyger', 'Turkish Angora', 'Turkish Van', 'York Chocolate', 'Domestic Short Hair'];
+
 
 
 // FUNCTIONS //
@@ -113,45 +118,60 @@ const appendAnimalInfo = (response) => {
     const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url} target = "_blank">Click here to find out more information about this cutie!</a>`);
     $('.infoContainer').append($adpoptionInfo);
 }
+// Function to Append Random Answer Choices to User Select //
+const appendAnswers = (response) => {
+    if (userType == 'Cat') {
+        let randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
+        $('#answer1').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
+        randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
+        $('#answer2').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
+        randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
+        $('#answer3').html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
+        $('#answer4').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
+        randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
+        $('#answer5').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
+    } else {
+        let randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
+        $('#answer1').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
+        $('#answer2').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
+        $('#answer3').html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
+        $('#answer4').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
+        $('#answer5').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+    };
+};
 
 // Event Listener for User Interaction with Game Functioniality //
 const gameFunction = (response) => {
+    appendAnswers(response);
     $('#submit').on('click', () => {
-        let userAnswer = $('#guess').val();
+        let userAnswer = $('#bguess :selected').val();
         let correctAnswer = response.data.animals[i].breeds.primary;
-        let correctAnswer2 = "";
-        if (response.data.animals[i].breeds.secondary != null) {
-            correctAnswer2 = response.data.animals[i].breeds.secondary
-        };
         // console.log(correctAnswer); - Debugging
         // console.log(correctAnswer2); - Debugging
         // console.log(userAnswer); - Debugging
         // Conditional to Check User Answer Against Correct Answer
-        if(userAnswer.toUpperCase() == correctAnswer.toUpperCase() && userAnswer.toUpperCase() == correctAnswer2.toUpperCase()) {
-            // !!! Add More Functionality Here (Hide/Show Certain Aspects of Website) !!! //
-            alert('Correct! You get two points!')
-            score += 2;
-            $('.scoreCounter').text("Your Score: " + score);
+        if(userAnswer === correctAnswer) {
+            // alert('Correct! You get two points!')
+            score ++;
+            console.log(score);
+            $('.scoreCounter').text("Correct! You now have " + score + " Paw Points!");
             $('.imageContainer').hide();
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
-        } else if (userAnswer.toUpperCase() == correctAnswer.toUpperCase() || userAnswer.toUpperCase() == correctAnswer2.toUpperCase()) {
-            alert('Kinda Right! You get one point!')
-            score += 1;
-            $('.scoreCounter').text("Your Score: " + score);
-            $('.imageContainer').hide();
-            $('.userInteraction').hide();
-            $('.infoContainer').show();
-            $('#playAgain').show();
+            return score;
         } else {
-            alert('Incorrect! Try again!');
+            // alert('Incorrect! Try again!');
             score -= 1;
-            $('.scoreCounter').text("Your Score: " + score);
+            $('.scoreCounter').text("Incorrect! You now have " + score + " Paw Points!");
             $('.imageContainer').hide();
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
+            return score;
         };
     });
 };
@@ -164,7 +184,7 @@ const revealInfo = () => {
         $('.infoContainer').show();
         $('#playAgain').show();
         score -= 1;
-        $('.scoreCounter').text("Your Score: " + score);
+        $('.scoreCounter').text("Cheater! You now have " + score + " Paw Points!");
     });
 };
 
@@ -181,7 +201,8 @@ const reset = () => {
 const playAgain = () => {
     $('#playAgain').on('click',() => {
         $('.infoContainer').hide();
-        $('.imageContainer').show();
+        $('.scoreCounter').hide();
+        $('.imageContainer').hide();
         $('.imageContainer').empty();
         $('.infoContainer').empty();
         if (userType == 'Cat'){
