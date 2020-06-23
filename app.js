@@ -24,7 +24,7 @@ let catBreeds = ['Abyssinian', 'American Bobtail', 'American Curl', 'American Sh
 // Event Listener for Search Input //
 const loadSearch = () => {
     $('#search').on('click', () => {
-        $('.userInput').hide()
+        $('.userInput').hide();
         if (userType == 'Cat'){
             $('.catloader').show().html('<img id = "loader" src = "Images/catloader.gif"/>');
         } else {
@@ -33,7 +33,7 @@ const loadSearch = () => {
         userZip = $('#zip').val();
         userType = $('#type :selected').val();
         animalSearch(userZip, userType);
-        console.log(userZip, userType);
+        // console.log(userZip, userType); - Debugging
         return userZip, userType;
     });
     $('#random').on('click', () => {
@@ -46,7 +46,7 @@ const loadSearch = () => {
             $('.dogloader').show().html('<img id = "loader" src = "Images/dogloader.gif">');
         };
         animalSearch(userZip, userType);
-        console.log(userZip, userType);
+        // console.log(userZip, userType); - Debugging
         return userZip, userType;
     })
 };
@@ -65,7 +65,7 @@ const animalSearch = (Zip, Type) => {
         $('#mainlogo').hide();
         $('.scoreCounter').show();
         $('.userInteraction').show();
-        console.log(response);
+        // console.log(response); - Debugging
         appendAnimalPhoto(response);
         $('.imageContainer').show();
         appendAnimalInfo(response);
@@ -74,14 +74,14 @@ const animalSearch = (Zip, Type) => {
         $('.scoreCounter').text("Your Score: " + score);
     })
     .catch(function (error) {
-        console.log(error)
+        console.log(error);
     });   
 };
 
 // Function to Append Animal Photo on Page Load //
 const appendAnimalPhoto = (response) => {
     i = Math.floor(Math.random() * response.data.animals.length);
-    console.log(i);
+    // console.log(i); - Debugging
     animal = response.data.animals[i];
     // Checks that Animal response has a photo, if not, chooses new animal from array at random //
     if (animal.primary_photo_cropped === null){
@@ -157,7 +157,7 @@ const gameFunction = (response) => {
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
-            console.log(score);
+            // console.log(score); - Debugging
             return score;
         } else if (userAnswer != correctAnswer) {
             // alert('Incorrect! Try again!');
@@ -167,7 +167,7 @@ const gameFunction = (response) => {
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
-            console.log(score)
+            // console.log(score); - Debugging
             return score;
         };
     });
@@ -188,7 +188,7 @@ const revealInfo = () => {
 // Event Listener for Reset Functionality //
 const reset = () => {
     $('#reset').on('click', () => {
-        location = location
+        location = location;
     });
 };
 
@@ -206,7 +206,7 @@ const playAgain = () => {
             $('.dogloader').show().html('<img id = "loader" src = "Images/dogloader.gif">');
         };
         animalSearch(userZip, userType);
-        console.log(userZip, userType);
+        // console.log(userZip, userType); - Debugging
         $('#playAgain').hide();    
     });
 };
