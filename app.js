@@ -112,7 +112,7 @@ const appendAnimalInfo = (response) => {
         $('.infoContainer').append($breedAnimal);
     } else {
         let breed = (animal.breeds.primary)
-        const $breedAnimal = $('<div>').text(breed);
+        const $breedAnimal = $('<div>').text('Breed: ' + breed);
         $('.infoContainer').append($breedAnimal);
     };
     const $adpoptionInfo = $('<div>').html(`<a href= ${animal.url} target = "_blank">Click here to find out more information about this cutie!</a>`);
