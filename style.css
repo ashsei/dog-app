@@ -84,7 +84,7 @@ nav a:hover {
     color: #0e4c52;
 }
 
-#search, #random, #reset, #revealAnswer, #submit, #type, #zip, #guess{
+#search, #random, #reset, #revealAnswer, #submit, #type, #zip, #bguess, #playAgain {
     font-family: inherit;
     font-size: 18px;
     text-align: center;
@@ -94,10 +94,14 @@ nav a:hover {
     border-radius: 20px;
 }
 
-#search, #random {
+#search, #random{
     font-size: 30px;
 }
 
+#revealAnswer, #reset, #bguess, #submit, #bguesslabel {
+    font-size: 25px;
+
+}
 /* Loading Image Styling */
 .waiting {
     position: relative;
@@ -113,6 +117,7 @@ nav a:hover {
     border-radius: 25px;
     font-family: 'Amatic SC', cursive;
     background-color: #11f294;
+    font-size: 30px;
 }
 
 /* Containers for Image, then Info Styling */
@@ -128,6 +133,12 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     top: 150px;
+}
+
+.infoContainer {
+    font-family: 'Amatic SC', cursive;
+    color: #11f294;
+    font-size: 30px;
 }
 
 /* Styling for image in imageContainer */
@@ -155,4 +166,6 @@ nav a:hover {
 .playAgain {
     position: relative;
     margin-top: 150px;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 30px;
 }
