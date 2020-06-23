@@ -37,7 +37,7 @@ nav {
     height: 75px;
     width: 100%;
     background: linear-gradient(0deg, rgba(35,183,195,0.8029586834733894) 0%, rgba(118,235,106,1) 88%);
-
+    z-index: 1;
     opacity: .75;
     text-align: right;
 }

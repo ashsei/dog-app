@@ -122,24 +122,24 @@ const appendAnimalInfo = (response) => {
 const appendAnswers = (response) => {
     if (userType == 'Cat') {
         let randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $('#answer1').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
         randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $('#answer2').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
         randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $('#answer3').html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
-        $('#answer4').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
         randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $('#answer5').html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
     } else {
         let randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $('#answer1').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
         randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $('#answer2').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
         randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $('#answer3').html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
-        $('#answer4').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
         randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $('#answer5').html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
     };
 };
 
@@ -156,14 +156,14 @@ const gameFunction = (response) => {
         if(userAnswer === correctAnswer) {
             // alert('Correct! You get two points!')
             score ++;
-            console.log(score);
             $('.scoreCounter').text("Correct! You now have " + score + " Paw Points!");
             $('.imageContainer').hide();
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
+            console.log(score);
             return score;
-        } else {
+        } else if (userAnswer != correctAnswer) {
             // alert('Incorrect! Try again!');
             score -= 1;
             $('.scoreCounter').text("Incorrect! You now have " + score + " Paw Points!");
@@ -171,6 +171,7 @@ const gameFunction = (response) => {
             $('.userInteraction').hide();
             $('.infoContainer').show();
             $('#playAgain').show();
+            console.log(score)
             return score;
         };
     });
@@ -188,8 +189,6 @@ const revealInfo = () => {
     });
 };
 
-
-
 // Event Listener for Reset Functionality //
 const reset = () => {
     $('#reset').on('click', () => {
@@ -201,7 +200,6 @@ const reset = () => {
 const playAgain = () => {
     $('#playAgain').on('click',() => {
         $('.infoContainer').hide();
-        $('.scoreCounter').hide();
         $('.imageContainer').hide();
         $('.imageContainer').empty();
         $('.infoContainer').empty();
