@@ -1,3 +1,22 @@
+/* Dynamic Styling */
+
+@media (max-width: 600px) {
+    nav {
+        display: none;
+    }
+    body {
+        display: block;
+        width: 100%
+    }
+    #mainlogo {
+        position: relative;
+    }
+    .imageContainer, .infoContainer {
+        width: 100%;
+    }
+
+}
+
 /* General Styling */
 body {
     display: flex;
@@ -79,12 +98,16 @@ nav a:hover {
 }
 
 /* User Input and Buttons Styling */
+button:hover, input:hover, select:hover {
+    cursor: pointer;
+}
+
 .userInput {
     font-family: 'Fredericka the Great', cursive;
     color: #0e4c52;
 }
 
-#search, #random, #reset, #revealAnswer, #submit, #type, #zip, #bguess, #playAgain {
+#search, #random, #reset, #revealAnswer, #submit, #type, #zip, #bguess {
     font-family: inherit;
     font-size: 18px;
     text-align: center;
@@ -99,7 +122,7 @@ nav a:hover {
 }
 
 #revealAnswer, #reset, #bguess, #submit, #bguesslabel {
-    font-size: 25px;
+    font-size: 20px;
 
 }
 /* Loading Image Styling */
@@ -137,8 +160,10 @@ nav a:hover {
 
 .infoContainer {
     font-family: 'Amatic SC', cursive;
-    color: #11f294;
+    color: #0e4c52;
     font-size: 30px;
+    background-color: #11f294;
+    
 }
 
 /* Styling for image in imageContainer */
@@ -153,6 +178,7 @@ nav a:hover {
 #detailPhoto {
     height: 500px;
     width: 500px;
+    border-radius: 25px;
 }
 
 /* Styling for Game Function Controllers */
@@ -163,9 +189,20 @@ nav a:hover {
 }
 
 /* Styling for playAgain button */
-.playAgain {
+#playAgain {
     position: relative;
     margin-top: 150px;
     font-family: 'Fredericka the Great', cursive;
-    font-size: 30px;
+    font-size: 25px;
+    background-color: #11f294;
+    border:  5px solid #19818a;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
 }
+
+ol {
+    list-style-type: upper-roman;
+    list-style-position: inside;
+}
+

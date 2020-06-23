@@ -4,8 +4,8 @@ var pf = new petfinder.Client({apiKey: "RrxzFfseW2JF3FXz9fbQvlZTdWoouqTj2s3fLbPv
 // GLOBAL VARIABLES //
 let i;
 let animal;
-// !!! ADD MORE ZIP CODES !!! //
-let randomZipCodes = ["30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757"];
+// Random Zip Codes generated using https://www.randomlists.com/random-zip-codes //
+let randomZipCodes = ["30101", "31404", "60181", "01040", "33880", "20877", "60453", "03054", "06824", "06877", "48195", "02852", "11757", "26554", "26003", "28078", "30294", "85302", "28173", "01701", "02136", "83301", "17701", "22304", "54302", "37379", "60035", "27540", "60067", "01970", "33445", "20850", "17011", "30126", "11412", "19050", "91316"];
 let randomZip = randomZipCodes[Math.floor(Math.random() * randomZipCodes.length)];
 let randomTypes = ["Cat", "Dog"];
 let randomType = randomTypes[Math.floor(Math.random() * randomTypes.length)];
@@ -15,7 +15,7 @@ let userType;
 // Information for the dogBreeds array was spliced from https://www.britannica.com/topic/list-of-dog-breeds-2027892 //
 let dogBreeds = ['Affenpinscher', 'Afghan Hound', 'Airedale Terrier' , 'Akita', 'Alaskan Malamute', 'American Staffordshire Terrier', 'American Water Spaniel', 'Australian Cattle Dog', 'Australian Shepherd', 'Australian Terrier', 'Basenji', 'Basset Hound', 'Beagle', 'Bearded Collie', 'Bedlington Terrier', 'Bernese Mountain Dog', 'Bichon Frise', 'Black and Tan Coonhound', 'Bloodhound', 'Border Collie', 'Border Terrier', 'Borzoi', 'Boston Terrier', 'Bouvier des Flandres', 'Boxer', 'Briard', 'Brittany', 'Brussels Griffon', 'Bull Terrier', 'Bulldog', 'Bullmastiff', 'Cairn Terrier', 'Canaan Dog', 'Chesapeake Bay Retriever', 'Chihuahua', 'Chinese Crested', 'Chinese Shar-Pei', 'Chow Chow', 'Clumber Spaniel', 'Cocker Spaniel', 'Collie', 'Curly-Coated Retriever', 'Dachshund', 'Dalmation', 'Doberman Pinscher', 'English Cocker Spaniel', 'English Setter', 'English Springer Spaniel', 'English Toy Spaniel', 'Eskimo Dog', 'Finnish Spitz', 'Flat-Coated Retriever', 'Fox Terrier', 'Foxhound', 'French Bulldog', 'German Shepherd', 'German Shorthaired Pointer', 'German Wirehaired Pointer', 'Golden Retriever', 'Gordon Setter', 'Great Dane', 'Greyhound', 'Irish Setter', 'Irish Water Spaniel', 'Irish Wolfhound', 'Jack Russell Terrier', 'Japanese Spaniel', 'Keeshond', 'Kerry Blue Terrier', 'Komondor', 'Kuvasz', 'Labrador Retriever', 'Lakeland Terrier', 'Lhasa Apso', 'Maltese', 'Manchester Terrier', 'Mastiff', 'Mexican Hairless', 'Newfoundland', 'Norwegian Elkhound', 'Norwich Terrier', 'Otterhound', 'Papillon', 'Pekingese', 'Pointer', 'Pomeranian', 'Poodle', 'Pug', 'Puli', 'Rhodesian Ridgeback', 'Rottweiler', 'Saint Bernard', 'Saluki', 'Samoyed', 'Schipperke', 'Schnauzer', 'Scottish Deerhound', 'Scottish Terrier', 'Sealyham Terrier', 'Shetland Sheepdog', 'Shih Tzu', 'Siberian Husky', 'Silky Terrier', 'Skye Terrier', 'Staffordshire Bull Terrier', 'Soft-Coated Wheaten Terrier', 'Sussex Spaniel', 'Spitz', 'Tibetan Terrier', 'Vizsla', 'Weimaraner', 'Welsh Terrier', 'West Highland White Terrier', 'Whippet', 'Yorkshire Terrier'];
 // Information for the catBreeds array was spliced from https://www.petfinder.com/cat-breeds/?page=1 //
-let catBreeds = ['Abyssinian', 'American Bobtail', 'American Curl', 'American Shorthair', 'American Wirehair', 'Balinese', 'Bengal', 'Birman', 'Bombay', 'British Shorthair', 'Burmese', 'Burmilla', 'Chartreux', 'Chausie', 'Cornish Rex', 'Cymric', 'Devon Rex', 'Egyptian Mau', 'Exotic Shorthair', 'Havana', 'Himalayan', 'Japanese Bobtail', 'Javanese', 'Korat', 'LaPerm', 'Maine Coon', 'Manx', 'Munchkin', 'Nebelung', 'Norwegian Forest Cat', 'Ocicat', 'Oriental Short Hair', 'Persian', 'Pixiebob', 'Ragamuffin', 'Ragdoll', 'Russian Blue', 'Scottish Fold', 'Selkirk Rex', 'Siamese', 'Siberian', 'Singapura', 'Snowshoe', 'Somali', 'Sphynx/Hairless Cat', 'Tonkinese', 'Toyger', 'Turkish Angora', 'Turkish Van', 'York Chocolate', 'Domestic Short Hair'];
+let catBreeds = ['Abyssinian', 'American Bobtail', 'American Curl', 'American Shorthair', 'American Wirehair', 'Balinese', 'Bengal', 'Birman', 'Bombay', 'British Shorthair', 'Burmese', 'Burmilla', 'Chartreux', 'Chausie', 'Cornish Rex', 'Cymric', 'Devon Rex', 'Egyptian Mau', 'Exotic Shorthair', 'Havana', 'Himalayan', 'Japanese Bobtail', 'Javanese', 'Korat', 'LaPerm', 'Maine Coon', 'Manx', 'Munchkin', 'Nebelung', 'Norwegian Forest Cat', 'Ocicat', 'Oriental Short Hair', 'Persian', 'Pixiebob', 'Ragamuffin', 'Ragdoll', 'Russian Blue', 'Scottish Fold', 'Selkirk Rex', 'Siamese', 'Siberian', 'Singapura', 'Snowshoe', 'Somali', 'Sphynx/Hairless Cat', 'Tonkinese', 'Toyger', 'Turkish Angora', 'Turkish Van', 'York Chocolate'];
 
 
 
@@ -104,11 +104,11 @@ const appendAnimalInfo = (response) => {
         $photoAnimal = $('<img>').attr('src', animal.photos[0].full).attr('id', 'detailPhoto');
     };
     $('.infoContainer').append($photoAnimal)    
-    const $nameAnimal = $('<div>').text(animal.name);
+    const $nameAnimal = $('<div>').text('Name: ' + animal.name);
     $('.infoContainer').append($nameAnimal);
     if (animal.breeds.secondary != null) {
         let breed = (animal.breeds.primary + " " + animal.breeds.secondary);
-        const $breedAnimal = $('<div>').text(breed);
+        const $breedAnimal = $('<div>').text('Breed: ' + breed);
         $('.infoContainer').append($breedAnimal);
     } else {
         let breed = (animal.breeds.primary)
@@ -121,25 +121,21 @@ const appendAnimalInfo = (response) => {
 // Function to Append Random Answer Choices to User Select //
 const appendAnswers = (response) => {
     if (userType == 'Cat') {
-        let randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
-        randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
-        randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`)
-        randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
+        // Adds four random answers to answer choices in random order from list of Cat Breeds //
+        for (let x = 0; x < 3; x++){
+            let randomCatAnswer = catBreeds[Math.floor(Math.random() * catBreeds.length)];
+            $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomCatAnswer}>${randomCatAnswer}</option>`);
+        };
+        // Adds correct answer to answer choices //
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`);
     } else {
-        let randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
-        randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
-        randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`)
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
-        randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
-        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        // Adds four random answers to answer choices in random order from list of Dog Breeds //
+        for (let x = 0; x < 3; x++){
+            let randomDogAnswer = dogBreeds[Math.floor(Math.random() * dogBreeds.length)];
+            $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${randomDogAnswer}>${randomDogAnswer}</option>`);
+        };
+        // Adds correct answer to answer choices //
+        $(`#answer${Math.floor(Math.random() * 5 + 1)}`).html(`<option value = ${response.data.animals[i].breeds.primary}>${response.data.animals[i].breeds.primary}</option>`);
     };
 };
 
@@ -203,6 +199,7 @@ const playAgain = () => {
         $('.imageContainer').hide();
         $('.imageContainer').empty();
         $('.infoContainer').empty();
+        $('.scoreCounter').hide();
         if (userType == 'Cat'){
             $('.catloader').show().html('<img id = "loader" src = "Images/catloader.gif"/>');
         } else {
